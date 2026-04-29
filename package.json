@@ -1,0 +1,21 @@
+{
+  "name": "babft-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "keywords": [],
+  "author": "dev-kas",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Obj to BABFT Converter</title>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script type="importmap">
+		{
+			"imports": {
+				"three": "/three/build/three.module.js",
+				"three/addons/": "/three/examples/jsm/"
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<div id="header"> <!-- header -->
+			<span name="title">
+				<span class="code font-mono">.obj</span>
+				<span class="">to</span>
+				<span class="code font-mono">BABFT</span>
+				<span class="">Converter</span>
+			</span>
+			<div>
+				<a href="#load" class="btn">load</a>
+			</div>
+		</div>
+		<div id="preview"></div>
+		<div id="controls">
+			<div name="wbar">
+				<span>controls</span>
+				<button>-</button>
+			</div>
+			<ul style="padding: 10px 10px;">
+				<li>
+					<button class="btn" onclick="funcs.process()">process</button>
+				</li>
+				<li>
+					<button class="btn" onclick="funcs.codegen()">codegen</button>
+				</li>
+			</ul>
+		</div>
+
+		<div id="load" class="modal">
+			<div name="header">
+				<span>load a 3d model</span>
+				<a href="#" class="btn">&times;</a>
+			</div>
+			<div>
+				<span>select an <span class="code">obj</span> file to load</span>
+				<input type="file" id="loadmodel" />
+			</div>
+		</div>
+		<script src="https://livejs.com/live.js"></script>
+		<script src="script.js" type="module"></script>
+	</body>
+</html>
+
