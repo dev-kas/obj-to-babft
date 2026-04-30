@@ -79,9 +79,18 @@ print("API Loaded! Starting to build model...")
 local function optimization_enable()
 	game:GetService("RunService"):Set3dRenderingEnabled(false)
 	if player.Character then player.Character.PrimaryPart.Anchored = true end
-	workspace.BoatStages:Destroy()
-	workspace.MainTerrain:Destroy()
-	workspace.WaterMask:Destroy()
+	local items = {
+		"BoatStages",
+		"MainTerrain",
+		"WaterMask"
+	}
+
+	for _, name in ipairs(items) do
+		local obj = workspace:FindFirstChild(name)
+		if obj then
+			obj:Destroy()
+		end
+	end
 end
 
 local function optimization_disable() -- only fixes what can be fixed
