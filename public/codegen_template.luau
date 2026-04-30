@@ -75,6 +75,20 @@ local function ScaleBlock(blockInstance, newSize)
 end
 print("API Loaded! Starting to build model...")
 
+-- optimization
+local function optimization_enable()
+	game:GetService("RunService"):Set3dRenderingEnabled(false)
+	if player.Character then player.Character.PrimaryPart.Anchored = true end
+	workspace.BoatStages:Destroy()
+	workspace.MainTerrain:Destroy()
+	workspace.WaterMask:Destroy()
+end
+
+local function optimization_disable() -- only fixes what can be fixed
+	game:GetService("RunService"):Set3dRenderingEnabled(true)
+	if player.Character then player.Character.PrimaryPart.Anchored = false end
+end
+
 -- processing codegen data and rendering them in the environment via API
 local blockname = "MetalBlock"
 local sequence = CODEGEN_INJECTED
@@ -88,6 +102,7 @@ end
 local total = #sequence / 10
 local start = os.clock()
 
+optimization_enable()
 for i = 1, #sequence, 10 do
 	local index = ((i - 1) / 10) + 1
 
@@ -113,6 +128,8 @@ for i = 1, #sequence, 10 do
 		ScaleBlock(block, sz)
 	end
 
+	block:Destroy() -- destroy on client to save memory
+
 	if index % 50 == 0 or index == total then
 		local elapsed = os.clock() - start
 		local rate = index / elapsed
@@ -124,5 +141,5 @@ for i = 1, #sequence, 10 do
 		):format(index, total, rate, eta))
 	end
 end
-
+optimization_disable()
 print("Model build complete")
