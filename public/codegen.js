@@ -7,7 +7,7 @@ async function loadTemplate() {
       throw new Error("HTTP error, status = " + response.status);
     }
 
-    const text = response.text();
+    const text = await response.text();
     template_cache = text;
     return text;
   } catch (e) {
@@ -66,7 +66,7 @@ export default class CodeGen {
     if (!template) {
       template = await loadTemplate();
     }
-    template_cache = template_cache;
+    template_cache = template;
     return template.replace("CODEGEN_INJECTED", this.gen);
   }
 }
