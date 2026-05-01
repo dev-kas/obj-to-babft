@@ -184,7 +184,6 @@ async function _gcodegen() {
   generator.generate();
   const code = await generator.emit();
   document.querySelector("#codegenOutput").textContent = code;
-  console.log(code);
 }
 
 window.funcs = {
