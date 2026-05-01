@@ -29,14 +29,14 @@
 		<div id="controls">
 			<div name="wbar">
 				<span>controls</span>
-				<button>-</button>
+				<button onclick="this.innerText = (this.innerText === '-' ? (controlsContent.style.display='none') : ((controlsContent.style.display='block')&&false))? '+':'-'">-</button>
 			</div>
-			<ul style="padding: 10px 10px;">
+			<ul id="controlsContent" style="padding: 10px 10px;">
 				<li>
 					<button class="btn" onclick="funcs.process()">process</button>
 				</li>
 				<li>
-					<button class="btn" onclick="funcs.codegen()">codegen</button>
+					<a href="#code" class="btn" onclick="funcs.codegen()">codegen</a>
 				</li>
 			</ul>
 		</div>
@@ -48,7 +48,19 @@
 			</div>
 			<div>
 				<span>select an <span class="code">obj</span> file to load</span>
+				<br />
 				<input type="file" id="loadmodel" />
+			</div>
+		</div>
+		<div id="code" class="modal">
+			<div name="header">
+				<span>generated code</span>
+				<a href="#" class="btn">&times;</a>
+			</div>
+			<div>
+				<textarea style="cursor: text; width: 400px; height: 400px; background-color: #181818; color: #fff; resize: none;" disabled id="codegenOutput"></textarea>
+				<br />
+				<button onclick="navigator.clipboard.writeText(codegenOutput.textContent)" class="btn">copy</button>
 			</div>
 		</div>
 		<script src="https://livejs.com/live.js"></script>

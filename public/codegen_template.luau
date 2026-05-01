@@ -129,25 +129,32 @@ for i = 1, #sequence, 10 do
 	local sizY = sequence[i + 8]
 	local sizZ = sequence[i + 9]
 
-	local cf = CFrame.new(posX,posY,posZ,rotX,rotY,rotZ,rotW)
-	local sz = Vector3.new(sizX,sizY,sizZ)
+	local cf = CFrame.new(posX, posY, posZ, rotX, rotY, rotZ, rotW)
+	local sz = Vector3.new(sizX, sizY, sizZ)
 
-	local block = NewBlock(blockname, cf)
-	if block then
-		ScaleBlock(block, sz)
+	local block
+	local delayTime = 0.05
+
+	while not block do
+		block = NewBlock(blockname, cf)
+
+		if not block then
+			task.wait(delayTime)
+			delayTime = math.min(delayTime * 2, 1)
+		end
 	end
 
-	block:Destroy() -- destroy on client to save memory
+	ScaleBlock(block, sz)
+	block:Destroy()
 
+	-- progress logging
 	if index % 50 == 0 or index == total then
 		local elapsed = os.clock() - start
 		local rate = index / elapsed
 		local remaining = total - index
 		local eta = remaining / rate
 
-		print((
-			"%d/%d | %.2f b/s | ETA %.1fs"
-		):format(index, total, rate, eta))
+		print(("%d/%d | %.2f b/s | ETA %.1fs"):format(index, total, rate, eta))
 	end
 end
 optimization_disable()

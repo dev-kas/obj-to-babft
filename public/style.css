@@ -79,12 +79,13 @@ body {
 #controls {
 	position: fixed;
 	width: 200px;
-	height: 400px;
+	height: min-content;
 	top: 50px;
 	right: 10px;
 	background-color: #1e1f20cf;
 	border-radius: 0.5rem;
 	border: 1px #aa9400 solid;
+	overflow: hidden;
 }
 
 #controls > div[name="wbar"] {
@@ -129,7 +130,7 @@ body {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	width: 240px;
+	min-width: 240px;
 	height: max-content;
 	background-color: #1e1e1c;
 	z-index: 50;

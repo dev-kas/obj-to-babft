@@ -183,6 +183,7 @@ async function _gcodegen() {
   generator.process(cuboids);
   generator.generate();
   const code = await generator.emit();
+  document.querySelector("#codegenOutput").textContent = code;
   console.log(code);
 }
 
